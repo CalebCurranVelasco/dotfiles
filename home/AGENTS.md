@@ -1,0 +1,2 @@
+- When writing commit messages, NEVER auto-add your agent name as co-author
+- Never manually modify CHANGELOG.md files or any files that are marked as auto-generated
