@@ -1,12 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, user, ... }:
 
 let
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
 in
 
 {
-  home.username = "calebcurran-velasco";
-  home.homeDirectory = "/Users/calebcurran-velasco";
+  home.username = user;
+  home.homeDirectory = "/Users/${user}";
   home.stateVersion = "24.11";
   home.packages = with pkgs; [
     # cli i use constantly
@@ -16,6 +16,7 @@ in
     jq        # json on the command line
     lazygit
     neovim
+    gh        # github cli
     # the font everything renders in
     nerd-fonts.hack
   ];
