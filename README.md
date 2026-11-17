@@ -7,7 +7,8 @@ Personal macOS setup managed with [nix-darwin](https://github.com/nix-darwin/nix
 Running the rebuild applies:
 
 - **System settings** — dark mode, fast key repeat, auto-hide dock and menu bar, Finder in list view, tap-to-click (`configuration.nix`)
-- **Homebrew** — `wezterm`, `discord`, `claude-code` (casks) and `herdr` (brew)
+- **Homebrew** — `wezterm`, `discord` (casks) and `herdr` (brew)
+- **Claude Code** — installed with the native installer on first rebuild, then updates itself
 - **Nix user packages** — ripgrep, fd, fzf, jq, lazygit, Neovim, GitHub CLI (`gh`), Hack Nerd Font
 - **Shell** — zsh with autosuggestions, syntax highlighting, and a starship prompt
 - **Editor** — Neovim config (lazy.nvim, oil.nvim, snacks.nvim picker, neogit/gitsigns, which-key)

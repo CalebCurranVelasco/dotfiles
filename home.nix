@@ -1,4 +1,4 @@
-{ config, pkgs, user, ... }:
+{ config, lib, pkgs, user, ... }:
 
 let
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
@@ -22,6 +22,15 @@ in
   ];
   fonts.fontconfig.enable = true;
   home.sessionVariables.EDITOR = "nvim";
+  home.sessionPath = [ "$HOME/.local/bin" ];
+
+  # Claude Code's native build updates itself, so only install it once.
+  home.activation.installClaudeCode = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    if [ ! -x "$HOME/.local/bin/claude" ]; then
+      run env PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH" \
+        ${pkgs.bash}/bin/bash -c "/usr/bin/curl -fsSL https://claude.ai/install.sh | ${pkgs.bash}/bin/bash"
+    fi
+  '';
 
   programs.zsh = {
     enable = true;

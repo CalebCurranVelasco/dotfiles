@@ -41,7 +41,6 @@
     casks = [
       "wezterm"
       "discord"
-      "claude-code"
     ];
   };
 }
