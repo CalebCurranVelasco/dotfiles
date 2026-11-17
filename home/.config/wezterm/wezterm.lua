@@ -10,6 +10,19 @@ config.macos_window_background_blur = 50
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
 
+-- Open the first window centered and covering most of the screen.
+local WINDOW_SCREEN_FRACTION = 0.85
+
+wezterm.on("gui-startup", function(cmd)
+	local screen = wezterm.gui.screens().active
+	local width = screen.width * WINDOW_SCREEN_FRACTION
+	local height = screen.height * WINDOW_SCREEN_FRACTION
+	local _, _, window = wezterm.mux.spawn_window(cmd or {})
+	local gui_window = window:gui_window()
+	gui_window:set_inner_size(width, height)
+	gui_window:set_position(screen.x + (screen.width - width) / 2, screen.y + (screen.height - height) / 2)
+end)
+
 -- Dim unfocused windows so the focused one is obvious at a glance.
 local UNFOCUSED_FOREGROUND_TEXT_HSB = { hue = 1.0, saturation = 0.25, brightness = 0.45 }
 local UNFOCUSED_WINDOW_BACKGROUND_OPACITY = 0.62
